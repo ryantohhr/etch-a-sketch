@@ -27,6 +27,18 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 12px;
+}
+
+.controls .clear {
+    font-size: 22px;
+    padding: 5px 40px;
+    border: none;
+    border-radius: 5px;
+}
+
+.controls:hover {
+    background-color: #ccd0dd;
 }
 
 .size-slider-div {

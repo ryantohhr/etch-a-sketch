@@ -1,3 +1,4 @@
+// Generate grid
 const container = document.querySelector(".container");
 const sizeValue = document.querySelector(".size-value");
 
@@ -22,10 +23,14 @@ function generateGrid(n) {
     };
 }
 
-const sizeSlider = document.querySelector(".size-slider");
-sizeSlider.oninput = (e) => updateGrid(e.target.value);
 
 // Change grid size based on size slider
+const sizeSlider = document.querySelector(".size-slider");
+sizeSlider.oninput = (e) => {
+    n = e.target.value;
+    updateGrid(n);
+}
+
 function updateGrid(n) {
     // Update size value
     updateSizeValue(n);
@@ -43,6 +48,19 @@ function updateSizeValue(n) {
 
 function removeGrid() {
     container.innerHTML = "";
+}
+
+
+// Clear grid
+const clearBtn = document.querySelector(".clear");
+clearBtn.addEventListener('click', () => {
+    clearGrid(n);
+})
+
+function clearGrid(n) {
+    removeGrid();
+
+    generateGrid(n);
 }
 
 // Colour
