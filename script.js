@@ -63,6 +63,8 @@ function updateGrid(n) {
 
     // Reload grid
     generateGrid(n);
+
+    setColor(n);
 }
 
 function updateSizeValue(n) {
