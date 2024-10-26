@@ -17,6 +17,26 @@ body {
     font-weight: bold;
 }
 
+.main {
+    display: flex;
+    gap: 80px;
+}
+
+.controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.size-slider-div {
+    text-align: center;
+}
+
+.size-slider {
+    background-color: black;
+}
+
 .container {
     box-sizing: content-box;
     height: 500px;
