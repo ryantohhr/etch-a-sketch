@@ -8,7 +8,7 @@ let gridSize = 16;
 let gridColor = "black";
 generateGrid(gridSize);
 
-function generateGrid(n, color = "black") {
+function generateGrid(n) {
     for (let i = 0; i < n ** 2; i++) {
         const grid = document.createElement("div");
         const gridLength = 500 / n;
@@ -19,10 +19,10 @@ function generateGrid(n, color = "black") {
     
         // Enable drawing
         grid.addEventListener('mouseenter', () => {
-            if (color === "black") {
+            if (gridColor === "black") {
                 grid.style.cssText += "background-color: black;";
             }
-            else if (color === "random") {
+            else if (gridColor === "random") {
                 grid.style.cssText += `background-color: ${getRandomColor()};`;
             }
         });
@@ -34,10 +34,10 @@ function generateGrid(n, color = "black") {
 const sizeSlider = document.querySelector(".size-slider");
 sizeSlider.oninput = (e) => {
     gridSize = e.target.value;
-    updateGrid(gridSize, gridColor);
+    updateGrid(gridSize);
 }
 
-function updateGrid(n, color) {
+function updateGrid(n) {
     // Update size value
     updateSizeValue(n);
 
@@ -45,7 +45,7 @@ function updateGrid(n, color) {
     removeGrid();
 
     // Reload grid
-    generateGrid(n, color);
+    generateGrid(n);
 }
 
 function updateSizeValue(n) {
@@ -60,13 +60,13 @@ function removeGrid() {
 // Clear grid
 const clearBtn = document.querySelector(".clear");
 clearBtn.addEventListener('click', () => {
-    clearGrid(gridSize, gridColor);
+    clearGrid(gridSize);
 })
 
-function clearGrid(n, color) {
+function clearGrid(n) {
     removeGrid();
 
-    generateGrid(n, color);
+    generateGrid(n);
 }
 
 
@@ -74,7 +74,7 @@ function clearGrid(n, color) {
 const rainbowBtn = document.querySelector(".rainbow");
 rainbowBtn.addEventListener('click', () => {
     gridColor = "random";
-    clearGrid(gridSize, gridColor);
+    clearGrid(gridSize);
 })
 
 function getRandomColor() {
@@ -86,3 +86,10 @@ function getRandomColor() {
 
     return color;
 }
+
+
+// Switch to eraser mode
+const eraserBtn = document.querySelector(".eraser");
+eraserBtn.addEventListener('click', () => {
+    gridColor = "white";
+})
