@@ -23,6 +23,7 @@ function generateGrid(n) {
 function setColor(n) {
     const grids = document.querySelectorAll(".container div");
     grids.forEach(function(grid) {
+        let gridOpacity = 0;
         grid.addEventListener('mouseenter', () => {
             switch (gridColor) {
                 case "black":
@@ -33,6 +34,12 @@ function setColor(n) {
                     break;
                 case "white":
                     grid.style.cssText += "background-color: white;";
+                    break;
+                case "shade":
+                    if (gridOpacity < 1) {
+                        gridOpacity += 0.1
+                    }
+                    grid.style.cssText += `background-color: black; opacity: ${gridOpacity}`;
                     break;
             }
         });
@@ -110,4 +117,11 @@ eraserBtn.addEventListener('click', () => {
 const blackBtn = document.querySelector(".black");
 blackBtn.addEventListener('click', () => {
     gridColor = "black";
+})
+
+
+// Switch to shading mode
+const shadeBtn = document.querySelector(".shade");
+shadeBtn.addEventListener('click', () => {
+    gridColor = "shade";
 })
