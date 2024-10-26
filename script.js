@@ -4,10 +4,11 @@ const sizeValue = document.querySelector(".size-value");
 
 sizeValue.textContent = "16 x 16";
 
-let n = 16;
-generateGrid(n);
+let gridSize = 16;
+let gridColor = "black";
+generateGrid(gridSize);
 
-function generateGrid(n) {
+function generateGrid(n, color = "black") {
     for (let i = 0; i < n ** 2; i++) {
         const grid = document.createElement("div");
         const gridLength = 500 / n;
@@ -18,7 +19,12 @@ function generateGrid(n) {
     
         // Enable drawing
         grid.addEventListener('mouseenter', () => {
-            grid.style.cssText += "background-color: black;";
+            if (color === "black") {
+                grid.style.cssText += "background-color: black;";
+            }
+            else if (color === "random") {
+                grid.style.cssText += `background-color: ${getRandomColor()};`;
+            }
         });
     };
 }
@@ -27,11 +33,11 @@ function generateGrid(n) {
 // Change grid size based on size slider
 const sizeSlider = document.querySelector(".size-slider");
 sizeSlider.oninput = (e) => {
-    n = e.target.value;
-    updateGrid(n);
+    gridSize = e.target.value;
+    updateGrid(gridSize, gridColor);
 }
 
-function updateGrid(n) {
+function updateGrid(n, color) {
     // Update size value
     updateSizeValue(n);
 
@@ -39,7 +45,7 @@ function updateGrid(n) {
     removeGrid();
 
     // Reload grid
-    generateGrid(n);
+    generateGrid(n, color);
 }
 
 function updateSizeValue(n) {
@@ -54,13 +60,29 @@ function removeGrid() {
 // Clear grid
 const clearBtn = document.querySelector(".clear");
 clearBtn.addEventListener('click', () => {
-    clearGrid(n);
+    clearGrid(gridSize, gridColor);
 })
 
-function clearGrid(n) {
+function clearGrid(n, color) {
     removeGrid();
 
-    generateGrid(n);
+    generateGrid(n, color);
 }
 
-// Colour
+
+// Switch to rainbow mode
+const rainbowBtn = document.querySelector(".rainbow");
+rainbowBtn.addEventListener('click', () => {
+    gridColor = "random";
+    clearGrid(gridSize, gridColor);
+})
+
+function getRandomColor() {
+    const digits = "0123456789abcdef"
+    let color = "#";
+    for (let i = 0; i < 6; i++) {
+        color += digits[Math.floor(Math.random() * 16)];
+    };
+
+    return color;
+}
