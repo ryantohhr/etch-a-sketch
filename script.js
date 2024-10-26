@@ -7,6 +7,7 @@ sizeValue.textContent = "16 x 16";
 let gridSize = 16;
 let gridColor = "black";
 generateGrid(gridSize);
+setColor(gridSize);
 
 function generateGrid(n) {
     for (let i = 0; i < n ** 2; i++) {
@@ -16,17 +17,26 @@ function generateGrid(n) {
         
         // Create grid
         container.appendChild(grid);
-    
-        // Enable drawing
+    };
+}
+
+function setColor(n) {
+    const grids = document.querySelectorAll(".container div");
+    grids.forEach(function(grid) {
         grid.addEventListener('mouseenter', () => {
-            if (gridColor === "black") {
-                grid.style.cssText += "background-color: black;";
-            }
-            else if (gridColor === "random") {
-                grid.style.cssText += `background-color: ${getRandomColor()};`;
+            switch (gridColor) {
+                case "black":
+                    grid.style.cssText += "background-color: black;";
+                    break;
+                case "random":
+                    grid.style.cssText += `background-color: ${getRandomColor()};`;
+                    break;
+                case "white":
+                    grid.style.cssText += "background-color: white;";
+                    break;
             }
         });
-    };
+    });       
 }
 
 
@@ -67,6 +77,8 @@ function clearGrid(n) {
     removeGrid();
 
     generateGrid(n);
+
+    setColor(n);
 }
 
 
@@ -74,7 +86,6 @@ function clearGrid(n) {
 const rainbowBtn = document.querySelector(".rainbow");
 rainbowBtn.addEventListener('click', () => {
     gridColor = "random";
-    clearGrid(gridSize);
 })
 
 function getRandomColor() {
