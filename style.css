@@ -18,7 +18,6 @@ body {
 }
 
 .container {
-    background: black;
     height: 500px;
     width: 500px;
     display: flex;
