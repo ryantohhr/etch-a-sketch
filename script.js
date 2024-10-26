@@ -32,8 +32,8 @@ function setColor(n) {
                 case "random":
                     grid.style.cssText += `background-color: ${getRandomColor()};`;
                     break;
-                case "white":
-                    grid.style.cssText += "background-color: white;";
+                case "erase":
+                    grid.style.cssText += "background-color: white; opacity: 1";
                     break;
                 case "shade":
                     if (gridOpacity < 1) {
@@ -111,7 +111,7 @@ function getRandomColor() {
 // Switch to eraser mode
 const eraserBtn = document.querySelector(".eraser");
 eraserBtn.addEventListener('click', () => {
-    gridColor = "white";
+    gridColor = "erase";
 })
 
 
