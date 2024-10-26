@@ -104,3 +104,10 @@ const eraserBtn = document.querySelector(".eraser");
 eraserBtn.addEventListener('click', () => {
     gridColor = "white";
 })
+
+
+// Switch to black mode
+const blackBtn = document.querySelector(".black");
+blackBtn.addEventListener('click', () => {
+    gridColor = "black";
+})
