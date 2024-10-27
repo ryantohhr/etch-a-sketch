@@ -30,7 +30,7 @@ function setColor(n) {
                     grid.style.cssText += "background-color: black;";
                     break;
                 case "random":
-                    grid.style.cssText += `background-color: ${getRandomColor()};`;
+                    grid.style.cssText += `background-color: ${getRandomColor()}; opacity: 1`;
                     break;
                 case "erase":
                     grid.style.cssText += "background-color: white; opacity: 1";
